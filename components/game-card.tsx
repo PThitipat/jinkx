@@ -3,9 +3,10 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Eye, Play, Copy, Clock } from "lucide-react"
+import { Copy } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
+import Link from "next/link"
 
 interface GameCardProps {
   title: string
@@ -29,7 +30,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
 
             if (newCount < 10) {
             setIsDelaying(true);
-            setTimeout(() => setIsDelaying(false), 1000);
+            setTimeout(() => setIsDelaying(false), 2000);
             }
         } else {
             const newCount = phase2Clicks + 1;
@@ -46,7 +47,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
             }, 2000);
             } else {
             setIsDelaying(true);
-            setTimeout(() => setIsDelaying(false), 1000);
+            setTimeout(() => setIsDelaying(false), 2000);
             }
         }
     };
@@ -96,20 +97,22 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
             </div>
 
             <div className="flex items-center justify-between pt-2">
-            <Button variant="outline"
-                onClick={handleMultiClick}
-                disabled={isDelaying}
-                className={`w-full px-6 py-2 rounded-md flex items-center gap-2 transition-all duration-200 select-none ${
-                isCompleted
-                    ? "hover:bg-green-600"
-                    : isDelaying
-                    ? "cursor-not-allowed"
-                    : ""
-                } text-white`}
-            >
-                <Copy className="w-4 h-4" />
-                {getButtonText()}
-            </Button>
+                <Link href="https://otieu.com/4/9935002" target="_blank">
+                    <Button variant="outline"
+                        onClick={handleMultiClick}
+                        disabled={isDelaying}
+                        className={`w-full px-6 py-2 rounded-md flex items-center gap-2 transition-all duration-200 select-none ${
+                        isCompleted
+                            ? "hover:bg-green-600"
+                            : isDelaying
+                            ? "cursor-not-allowed"
+                            : ""
+                        } text-white`}
+                    >
+                        <Copy className="w-4 h-4" />
+                        {getButtonText()}
+                    </Button>
+                </Link>
             </div>
         </CardContent>
         </Card>
