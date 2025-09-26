@@ -101,7 +101,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
                 disabled={isDelaying}
                 className={`w-full px-6 py-2 rounded-md flex items-center gap-2 transition-all duration-200 select-none ${
                 isCompleted
-                    ? "hover:bg-green-700"
+                    ? "hover:bg-green-600"
                     : isDelaying
                     ? "cursor-not-allowed"
                     : ""
