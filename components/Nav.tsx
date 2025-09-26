@@ -51,7 +51,7 @@ export default function Navbar() {
                     Term of Services
                 </Link>
                 <Link href="#getkey" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-                    Key System
+                    Key Systems
                 </Link>
             </nav>
             <div className="hidden md:flex gap-4 items-center">
