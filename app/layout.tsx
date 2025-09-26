@@ -3,6 +3,7 @@ import "@/styles/globals.css"
 import { Inter } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from 'next/script' 
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script src="https://fpyf8.com/88/tag.min.js" data-zone="173889" async data-cfasync="false"/>
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
