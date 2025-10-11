@@ -19,8 +19,15 @@ import { KeyCard } from "@/components/key-card";
 export default function LandingPage() {
 
     const handleCopy = () => {
-        console.log("Game copied!")
-    }
+        const textToCopy = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/stormskmonkey/JinkX/refs/heads/main/Loader.lua"))()';
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                console.log("Copied to clipboard!");
+            })
+            .catch((err) => {
+                console.error("Failed to copy: ", err);
+            });
+    };
 
     const container = {
         hidden: { opacity: 0 },
@@ -153,14 +160,14 @@ export default function LandingPage() {
                                 image: "/MapImages/FishIt.webp",
                                 title: "Fish It! 🐟",
                             },
-                            {
-                                image: "/MapImages/Plant_vs_Brainrot.webp",
-                                title: "[⚔️] Plants Vs Brainrots 🌻",
-                            },
-                            {
-                                image: "/MapImages/Fisch.webp",
-                                title: "Fisch 🐟",
-                            },
+                            // {
+                            //     image: "/MapImages/Plant_vs_Brainrot.webp",
+                            //     title: "[⚔️] Plants Vs Brainrots 🌻",
+                            // },
+                            // {
+                            //     image: "/MapImages/Fisch.webp",
+                            //     title: "Fisch 🐟",
+                            // },
                         ].map((step, i) => (
                             <motion.div key={i} variants={item}>
                             <GameCard
@@ -201,18 +208,15 @@ export default function LandingPage() {
 
                         {[
                             {
-                                image: "/MapImages/99Night.png",
-                                title: "Linkvertise",
-                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
-                            },
-                            {
-                                image: "/MapImages/FishIt.webp",
                                 title: "LootLabs",
                                 link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
                             },
                             {
-                                image: "/MapImages/99Night.png",
-                                title: "Linkvertise",
+                                title: "LootLabs",
+                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
+                            },
+                            {
+                                title: "LootLabs",
                                 link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
                             },
                         ].map((step, i) => (
@@ -225,7 +229,7 @@ export default function LandingPage() {
                                 description="Follow these steps to get your key:"
                                 features={[
                                     "Click the 'Get Key' button below",
-                                    "Wait for the Linkvertise countdown to complete",
+                                    "Wait for the LootLabs countdown to complete",
                                     "Click 'Continue' when available",
                                     "Complete any additional verification steps",
                                     "Copy your key and use it in the executor",
