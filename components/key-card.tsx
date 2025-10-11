@@ -66,7 +66,7 @@ export function KeyCard({
         }
     };
 
-    const currentLink = (phase1Clicks >= 10 && phase2Clicks >= 3) ? link : "https://otieu.com/4/9935002"
+    const currentLink = (phase1Clicks >= 10 && phase2Clicks >= 3) ? link : "https://otieu.com/4/10024793"
 
     const iconColorClasses =
         iconColor === "purple" ? "bg-purple-500/10 text-purple-500" : "bg-yellow-500/10 text-yellow-500"

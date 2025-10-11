@@ -91,7 +91,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
             </div>
 
             <div className="flex items-center justify-between pt-2">
-                <Link className="w-full" href="https://otieu.com/4/9935002" target="_blank">
+                <Link className="w-full" href="https://otieu.com/4/10024793" target="_blank">
                     <Button variant="outline"
                         onClick={handleMultiClick}
                         disabled={isDelaying}
