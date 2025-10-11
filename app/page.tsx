@@ -214,8 +214,8 @@ export default function LandingPage() {
                                 link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
                             },
                             {
-                                title: "LootLabs",
-                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
+                                title: "Linkvertise",
+                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium_Linkvertise-pDSpCraOmzEZ",
                             },
                             {
                                 title: "LootLabs",
@@ -226,8 +226,8 @@ export default function LandingPage() {
                             <KeyCard
                                 title={step.title}
                                 link={step.link}
-                                buttonColor={i % 2 === 0 ? "yellow" : "yellow"}
-                                iconColor={i % 2 === 0 ? "yellow" : "yellow"}
+                                buttonColor={i % 2 === 0 ? "purple" : "yellow"}
+                                iconColor={i % 2 === 0 ? "purple" : "yellow"}
                                 description="Follow these steps to get your key:"
                                 features={[
                                     "Click the 'Get Key' button below",
