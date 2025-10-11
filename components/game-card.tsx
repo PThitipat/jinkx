@@ -39,12 +39,6 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
             if (newCount === 3) {
             setIsCompleted(true);
             onCopy?.();
-            // รีเซ็ต state หลัง 2 วิ
-            setTimeout(() => {
-                setPhase1Clicks(0);
-                setPhase2Clicks(0);
-                setIsCompleted(false);
-            }, 1000);
             } else {
             setIsDelaying(true);
             setTimeout(() => setIsDelaying(false), 1000);

@@ -47,12 +47,6 @@ export function KeyCard({
 
         if (newCount === 3) {
             setIsCompleted(true)
-            onCopy?.()
-            setTimeout(() => {
-            setPhase1Clicks(0)
-            setPhase2Clicks(0)
-            setIsCompleted(false)
-            }, 1000)
         } else {
             setIsDelaying(true)
             setTimeout(() => setIsDelaying(false), 1000)
