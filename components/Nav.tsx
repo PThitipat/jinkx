@@ -39,7 +39,7 @@ export default function Navbar() {
             <div className="container flex h-16 items-center justify-between">
             <div className="flex items-center gap-2 font-bold">
                 <div className="size-8 rounded-lg flex items-center justify-center text-primary-foreground">
-                    <img src="/Logo.png" alt="" />
+                    <img src="/favicon.png" alt="" />
                 </div>
                 <span>JinkX</span>
             </div>

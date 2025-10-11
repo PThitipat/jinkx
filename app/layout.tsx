@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="173889" async data-cfasync="false"></script> */}
+        <script src="https://fpyf8.com/88/tag.min.js" data-zone="173889" async data-cfasync="false"></script>
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
