@@ -14,6 +14,7 @@ import { HeartHandshake } from "@/components/HeartHandshake";
 import { Activity } from "@/components/Activity";
 import { Users } from "@/components/Users";
 import { GameCard } from "@/components/game-card";
+import { KeyCard } from "@/components/key-card";
 
 export default function LandingPage() {
 
@@ -123,50 +124,6 @@ export default function LandingPage() {
                 </div>
                 </section>
 
-                {/* Features Section */}
-                <section id="About Us" className="w-full py-20 md:py-32">
-                <div className="container px-4 md:px-6">
-                    <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-                    >
-                    <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                        About Us
-                    </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Everything You Need to Succeed</h2>
-                    <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                        Our comprehensive platform provides all the tools you need to streamline your workflow, boost
-                        productivity, and achieve your goals.
-                    </p>
-                    </motion.div>
-
-                    <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                    {features.map((feature, i) => (
-                        <motion.div key={i} variants={item}>
-                        <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
-                            <CardContent className="p-6 flex flex-col h-full">
-                            <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                            </CardContent>
-                        </Card>
-                        </motion.div>
-                    ))}
-                    </motion.div>
-                </div>
-                </section>
-
                 {/* How It Works Section */}
                 <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
                     <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
@@ -198,19 +155,130 @@ export default function LandingPage() {
                             },
                             {
                                 image: "/MapImages/Plant_vs_Brainrot.webp",
-                                title: "[🌈] Plants Vs Brainrots 🌻",
+                                title: "[⚔️] Plants Vs Brainrots 🌻",
+                            },
+                            {
+                                image: "/MapImages/Fisch.webp",
+                                title: "Fisch 🐟",
                             },
                         ].map((step, i) => (
                             <motion.div key={i} variants={item}>
                             <GameCard
                                 title={step.title}
                                 image={step.image}
-                                features={["Survival", "Crafting", "Monster ESP"]}
+                                features={["Auto Farm", "ESP", "Walk Speed"]}
                                 onCopy={handleCopy}
                             />
                             </motion.div>
                         ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* Get Key Section */}
+                <section id="getkey" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+                    <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+                    <div className="container px-4 md:px-6 relative">
+                        <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+                        >
+                        <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                            Key Systems
+                        </Badge>
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get your 4Hr key.</h2>
+                        <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                            Unlock full access with a 4-hour key — fast, secure, and hassle-free
+                        </p>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative">
+                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
+
+                        {[
+                            {
+                                image: "/MapImages/99Night.png",
+                                title: "Linkvertise",
+                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
+                            },
+                            {
+                                image: "/MapImages/FishIt.webp",
+                                title: "LootLabs",
+                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
+                            },
+                            {
+                                image: "/MapImages/99Night.png",
+                                title: "Linkvertise",
+                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
+                            },
+                        ].map((step, i) => (
+                            <motion.div key={i} variants={item}>
+                            <KeyCard
+                                title={step.title}
+                                link={step.link}
+                                buttonColor={i % 2 === 0 ? "purple" : "yellow"}
+                                iconColor={i % 2 === 0 ? "purple" : "yellow"}
+                                description="Follow these steps to get your key:"
+                                features={[
+                                    "Click the 'Get Key' button below",
+                                    "Wait for the Linkvertise countdown to complete",
+                                    "Click 'Continue' when available",
+                                    "Complete any additional verification steps",
+                                    "Copy your key and use it in the executor",
+                                ]}
+                                onCopy={handleCopy}
+                            />
+                            </motion.div>
+                        ))}
+                        </div>
+                    </div>
+                </section>
+                
+                {/* Features Section */}
+                <section id="About Us" className="w-full py-20 md:py-32">
+                    <div className="container px-4 md:px-6">
+                        <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+                        >
+                        <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                            About Us
+                        </Badge>
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Everything You Need to Succeed</h2>
+                        <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                            Our comprehensive platform provides all the tools you need to streamline your workflow, boost
+                            productivity, and achieve your goals.
+                        </p>
+                        </motion.div>
+
+                        <motion.div
+                        variants={container}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        >
+                        {features.map((feature, i) => (
+                            <motion.div key={i} variants={item}>
+                            <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+                                <CardContent className="p-6 flex flex-col h-full">
+                                <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                                <p className="text-muted-foreground">{feature.description}</p>
+                                </CardContent>
+                            </Card>
+                            </motion.div>
+                        ))}
+                        </motion.div>
                     </div>
                 </section>
 

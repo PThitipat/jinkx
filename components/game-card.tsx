@@ -30,7 +30,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
 
             if (newCount < 10) {
             setIsDelaying(true);
-            setTimeout(() => setIsDelaying(false), 2000);
+            setTimeout(() => setIsDelaying(false), 1000);
             }
         } else {
             const newCount = phase2Clicks + 1;
@@ -44,10 +44,10 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
                 setPhase1Clicks(0);
                 setPhase2Clicks(0);
                 setIsCompleted(false);
-            }, 2000);
+            }, 1000);
             } else {
             setIsDelaying(true);
-            setTimeout(() => setIsDelaying(false), 2000);
+            setTimeout(() => setIsDelaying(false), 1000);
             }
         }
     };
@@ -65,7 +65,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
     };
 
     return (
-        <Card className="w-full max-w-sm overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md select-none">
+        <Card className="w-full max-w-lg overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md select-none">
         <div className="relative">
             <div className="aspect-video bg-black rounded-t-lg overflow-hidden">
             <Image
@@ -97,7 +97,7 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
             </div>
 
             <div className="flex items-center justify-between pt-2">
-                <Link href="https://otieu.com/4/9935002" target="_blank">
+                <Link className="w-full" href="https://otieu.com/4/9935002" target="_blank">
                     <Button variant="outline"
                         onClick={handleMultiClick}
                         disabled={isDelaying}
