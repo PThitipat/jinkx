@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "JinkX Official Website",
+  title: "JinkX",
   description: "Boost productivity, reduce costs, and scale your business with our all-in-one JinkX platform."
 }
 

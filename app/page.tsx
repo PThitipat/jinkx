@@ -224,8 +224,8 @@ export default function LandingPage() {
                             <KeyCard
                                 title={step.title}
                                 link={step.link}
-                                buttonColor={i % 2 === 0 ? "purple" : "yellow"}
-                                iconColor={i % 2 === 0 ? "purple" : "yellow"}
+                                buttonColor={i % 2 === 0 ? "yellow" : "yellow"}
+                                iconColor={i % 2 === 0 ? "yellow" : "yellow"}
                                 description="Follow these steps to get your key:"
                                 features={[
                                     "Click the 'Get Key' button below",
