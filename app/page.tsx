@@ -87,10 +87,12 @@ export default function LandingPage() {
                         Streamline your processes and focus on what matters most.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" variant="outline" className="rounded-full h-12 px-8 text-base border border-red-700">
-                        Join Discord
-                        <ArrowRight className="ml-2 size-4" />
-                        </Button>
+                        <a href="https://discord.gg/XAfp5RsQ4M" target="_blank" rel="noopener noreferrer">
+                            <Button size="lg" variant="outline" className="rounded-full h-12 px-8 text-base border border-red-700">
+                            Join Discord
+                            <ArrowRight className="ml-2 size-4" />
+                            </Button>
+                        </a>
                     </div>
                     <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
