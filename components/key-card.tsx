@@ -33,11 +33,11 @@ export function KeyCard({
     const handleMultiClick = () => {
         if (isDelaying || isCompleted) return
 
-        if (phase1Clicks < 10) {
+        if (phase1Clicks < 8) {
         const newCount = phase1Clicks + 1
         setPhase1Clicks(newCount)
 
-        if (newCount < 10) {
+        if (newCount < 8) {
             setIsDelaying(true)
             setTimeout(() => setIsDelaying(false), 1000)
         }
@@ -57,8 +57,8 @@ export function KeyCard({
     const getButtonText = () => {
         if (isCompleted) return `Get Key - ${title}`;
 
-        if (phase1Clicks < 10) {
-            const remaining = 10 - phase1Clicks;
+        if (phase1Clicks < 8) {
+            const remaining = 8 - phase1Clicks;
             return `Click - ${remaining} left`;
         } else {
             const remainingPhase2Click = 3 - phase2Clicks;
@@ -66,7 +66,7 @@ export function KeyCard({
         }
     };
 
-    const currentLink = (phase1Clicks >= 10 && phase2Clicks >= 3) ? link : "https://otieu.com/4/10024793"
+    const currentLink = (phase1Clicks >= 8 && phase2Clicks >= 3) ? link : "https://otieu.com/4/10024793"
 
     const iconColorClasses =
         iconColor === "purple" ? "bg-purple-500/10 text-purple-500" : "bg-yellow-500/10 text-yellow-500"

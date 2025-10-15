@@ -162,10 +162,10 @@ export default function LandingPage() {
                                 image: "/MapImages/FishIt.webp",
                                 title: "Fish It! 🐟",
                             },
-                            // {
-                            //     image: "/MapImages/Plant_vs_Brainrot.webp",
-                            //     title: "[⚔️] Plants Vs Brainrots 🌻",
-                            // },
+                            {
+                                image: "/MapImages/raise_animals.png",
+                                title: "[🎉] Raise Animals",
+                            },
                             // {
                             //     image: "/MapImages/Fisch.webp",
                             //     title: "Fisch 🐟",
