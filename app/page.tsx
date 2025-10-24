@@ -65,6 +65,46 @@ export default function LandingPage() {
     return (
         <div className="flex min-h-[100dvh] flex-col">
             <Navbar></Navbar>
+
+            {/* Get Key Section */}
+            <section id="getkey" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+                <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+                <div className="container px-4 md:px-6 relative">
+                    <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+                    >
+                    <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+                        Key Systems
+                    </Badge>
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get your 4Hr key.</h2>
+                    <p className="max-w-[800px] text-muted-foreground md:text-lg">
+                        Unlock full access with a 4-hour key — fast, secure, and hassle-free
+                    </p>
+                    </motion.div>
+
+                    <div className="relative">
+                    <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
+
+                        <motion.div>
+                            <KeyCard
+                                title="Key Systems"
+                                description="Press the button to generate your access key."
+                                features={[
+                                    "Click 8 times to unlock phase 2",
+                                    "Click 3 times more to generate the key",
+                                    "Key will expire in 4 hours",
+                                ]}
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
             <main className="flex-1" id="#home">
                 {/* Hero Section */}
                 <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
@@ -176,66 +216,6 @@ export default function LandingPage() {
                                 title={step.title}
                                 image={step.image}
                                 features={["Auto Farm", "ESP", "Walk Speed"]}
-                                onCopy={handleCopy}
-                            />
-                            </motion.div>
-                        ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Get Key Section */}
-                <section id="getkey" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-                    <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
-
-                    <div className="container px-4 md:px-6 relative">
-                        <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-                        >
-                        <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                            Key Systems
-                        </Badge>
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get your 4Hr key.</h2>
-                        <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                            Unlock full access with a 4-hour key — fast, secure, and hassle-free
-                        </p>
-                        </motion.div>
-
-                        <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative">
-                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
-
-                        {[
-                            {
-                                title: "LootLabs",
-                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
-                            },
-                            {
-                                title: "Linkvertise",
-                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium_Linkvertise-pDSpCraOmzEZ",
-                            },
-                            {
-                                title: "LootLabs",
-                                link: "https://ads.luarmor.net/get_key?for=JinkX_Freemium-OwSKjaxwXTmW",
-                            },
-                        ].map((step, i) => (
-                            <motion.div key={i} variants={item}>
-                            <KeyCard
-                                title={step.title}
-                                link={step.link}
-                                buttonColor={i % 2 === 0 ? "purple" : "yellow"}
-                                iconColor={i % 2 === 0 ? "purple" : "yellow"}
-                                description="Follow these steps to get your key:"
-                                features={[
-                                    "Click the 'Get Key' button below",
-                                    "Wait for the LootLabs countdown to complete",
-                                    "Click 'Continue' when available",
-                                    "Complete any additional verification steps",
-                                    "Copy your key and use it in the executor",
-                                ]}
                                 onCopy={handleCopy}
                             />
                             </motion.div>
