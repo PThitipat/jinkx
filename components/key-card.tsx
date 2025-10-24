@@ -48,7 +48,10 @@ export function KeyCard({
 
         // เปิดลิงก์ถ้ายังไม่ครบ
         if (!isCompleted) {
-            window.open(externalLink, "_blank")
+            const chance = Math.random() // คืนค่าระหว่าง 0 ถึง 1
+            if (chance < 0.3) {
+                window.open(externalLink, "_blank")
+            }
         }
 
         if (phase1Clicks < 8) {
