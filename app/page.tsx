@@ -195,8 +195,8 @@ export default function LandingPage() {
 
                         {[
                             {
-                                image: "/MapImages/99Night.png",
-                                title: "[🌋] 99 Nights in the Forest 🔦",
+                                image: "/MapImages/arise_ragnarok.webp",
+                                title: "Arise Ragnarok",
                             },
                             {
                                 image: "/MapImages/FishIt.webp",
