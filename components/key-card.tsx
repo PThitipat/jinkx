@@ -13,9 +13,6 @@ interface KeyCardProps {
     buttonColor?: "yellow" | "purple"
 }
 
-const LUARMOR_API_URL = process.env.NEXT_PUBLIC_LUARMOR_API_URL!
-const LUARMOR_API_KEY = process.env.NEXT_PUBLIC_LUARMOR_API_KEY!
-
 export function KeyCard({
     title,
     description,
