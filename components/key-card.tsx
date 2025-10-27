@@ -123,7 +123,7 @@ export function KeyCard({
                 {/* Progress Indicator */}
                 {!CreatedKey && (
                     <div className="flex justify-center space-x-2 pt-2">
-                        {[...Array(11)].map((_, i) => {
+                        {[...Array(8)].map((_, i) => {
                             const active = i < (phase1Clicks + phase2Clicks)
                             return (
                                 <div
