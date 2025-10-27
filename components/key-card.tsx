@@ -45,16 +45,17 @@ export function KeyCard({
 
         // เปิดลิงก์ถ้ายังไม่ครบ
         if (!isCompleted) {
-            const chance = Math.random() // คืนค่าระหว่าง 0 ถึง 1
-            if (chance < 0.3) {
-                window.open(externalLink, "_blank")
-            }
+            // const chance = Math.random() // คืนค่าระหว่าง 0 ถึง 1
+            // if (chance < 0.3) {
+            //     window.open(externalLink, "_blank")
+            // }
+            window.open(externalLink, "_blank")
         }
 
-        if (phase1Clicks < 8) {
+        if (phase1Clicks < 5) {
             const newCount = phase1Clicks + 1
             setPhase1Clicks(newCount)
-            if (newCount < 8) {
+            if (newCount < 5) {
                 setIsDelaying(true)
                 setTimeout(() => setIsDelaying(false), 1000)
             }
@@ -75,6 +76,7 @@ export function KeyCard({
                     const data = await res.json();
                     setCreatedKey(data.luarmor_data?.user_key || data.luarmor_data?.message || "ERROR_CREATING_KEY");
                 } catch (e) {
+                    console.error("Error creating key:", e);
                     setCreatedKey("ERROR_CREATING_KEY");
                 } finally {
                     setIsLoading(false);
@@ -89,7 +91,7 @@ export function KeyCard({
     const getButtonText = () => {
         if (isLoading) return "CREATING Key..."
         if (CreatedKey) return "Key Created ✅"
-        if (phase1Clicks < 8) return `Click ${8 - phase1Clicks} more`
+        if (phase1Clicks < 5) return `Click ${5 - phase1Clicks} more`
         if (phase2Clicks < 3) return `Click ${3 - phase2Clicks} more to create`
         return `Get Key - ${title}`
     }

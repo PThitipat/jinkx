@@ -24,11 +24,11 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
     const handleMultiClick = () => {
         if (isDelaying || isCompleted) return;
 
-        if (phase1Clicks < 8) {
+        if (phase1Clicks < 5) {
             const newCount = phase1Clicks + 1;
             setPhase1Clicks(newCount);
 
-            if (newCount < 8) {
+            if (newCount < 5) {
             setIsDelaying(true);
             setTimeout(() => setIsDelaying(false), 1000);
             }
@@ -49,8 +49,8 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
     const getButtonText = () => {
         if (isCompleted) return "Copied!";
 
-        if (phase1Clicks < 8) {
-            const remaining = 8 - phase1Clicks;
+        if (phase1Clicks < 5) {
+            const remaining = 5 - phase1Clicks;
             return `Click - ${remaining} left`;
         } else {
             const remainingPhase2Click = 3 - phase2Clicks;
