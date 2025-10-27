@@ -106,7 +106,7 @@ export function KeyCard({
     const Icon = iconColor === "purple" ? KeyRound : LinkIcon
 
     return (
-        <Card className="w-ful h-full flex flex-col justify-center overflow-hidden border border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md select-none">
+        <Card className="w-full h-full flex flex-col justify-center overflow-hidden border border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md select-none">
             <CardContent className="p-8 flex flex-col justify-center space-y-6 h-full">
 
                 {/* Icon & Title */}
