@@ -203,6 +203,14 @@ export default function LandingPage() {
                                 title: "Fish It! 🐟",
                             },
                             {
+                                image: "/MapImages/anime_eternal.webp",
+                                title: "[🎃Halloween Part 2] Anime Eternal",
+                            },
+                            {
+                                image: "/MapImages/roguepiece.webp",
+                                title: "[⚔️👻AIZEN] Rogue Piece",
+                            },
+                            {
                                 image: "/MapImages/raise_animals.png",
                                 title: "[🎉] Raise Animals",
                             },
