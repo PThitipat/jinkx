@@ -14,7 +14,7 @@ export async function POST() {
           "Content-Type": "application/json",
           "x-api-key": "d0b09baf596osjk4gadh4bzi286z34hgzx566r4hjzalpou37cfc7b0ab",
         },
-        timeout: 10000,
+        timeout: 30000,
       }
     );
 
