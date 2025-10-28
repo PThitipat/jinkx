@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 
 const NODE_SERVER_URL = process.env.NEXT_PUBLIC_LOCAL_API_URL!;
-const LOCAL_API_KEY = process.env.NEXT_PUBLIC_LOCAL_API_KEY!;
+// const LOCAL_API_KEY = process.env.NEXT_PUBLIC_LOCAL_API_KEY!;
 
 export async function POST() {
   try {
@@ -12,7 +12,7 @@ export async function POST() {
       {
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": LOCAL_API_KEY,
+          "x-api-key": "d0b09baf596osjk4gadh4bzi286z34hgzx566r4hjzalpou37cfc7b0ab",
         },
         timeout: 10000,
       }
