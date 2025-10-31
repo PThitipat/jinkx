@@ -1,11 +1,12 @@
-'use client'; // ต้องใส่บรรทัดนี้สำหรับ App Router ที่ใช้ client-side features
+'use client'
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Frown } from 'lucide-react'; // ใช้ไอคอนน่ารักๆ จาก lucide-react
+import Link from 'next/link'
+import { motion, Variants } from 'framer-motion'
+import { Frown } from 'lucide-react'
 
 export default function NotFound() {
-  const containerVariants = {
+  // ✅ ใส่ type ให้ชัดเจน
+  const containerVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -14,15 +15,15 @@ export default function NotFound() {
         type: "spring",
         stiffness: 100,
         damping: 10,
-        staggerChildren: 0.1
-      }
-    }
-  };
+        staggerChildren: 0.1,
+      },
+    },
+  }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <motion.div
@@ -39,24 +40,24 @@ export default function NotFound() {
           className="text-6xl text-purple-600 mb-4"
           animate={{
             y: [0, -10, 0, -5, 0],
-            rotate: [0, -5, 0, 5, 0]
+            rotate: [0, -5, 0, 5, 0],
           }}
           transition={{
             duration: 3,
             ease: "easeInOut",
             times: [0, 0.2, 0.5, 0.8, 1],
             repeat: Infinity,
-            repeatDelay: 1
+            repeatDelay: 1,
           }}
         >
-          <Frown size={80} strokeWidth={1.5} /> {/* ไอคอนหน้าเศร้า */}
+          <Frown size={80} strokeWidth={1.5} />
         </motion.div>
 
         <motion.h1
           className="text-5xl font-extrabold text-purple-700 mb-4"
           variants={itemVariants}
         >
-          อุปส์\! 404
+          อุปส์! 404
         </motion.h1>
 
         <motion.p
@@ -67,7 +68,7 @@ export default function NotFound() {
         </motion.p>
 
         <motion.div variants={itemVariants}>
-          <Link href="/" passHref>
+          <Link href="/" passHref legacyBehavior>
             <motion.a
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-pink-500 hover:bg-pink-600 transition-all duration-300 ease-in-out transform hover:scale-105"
               whileHover={{ scale: 1.05 }}
@@ -83,8 +84,8 @@ export default function NotFound() {
         className="mt-8 text-sm text-gray-500 opacity-70"
         variants={itemVariants}
       >
-        อย่าเพิ่งท้อนะ ลองเช็ค URL อีกครั้ง หรือกดปุ่มข้างบนเลย\!
+        อย่าเพิ่งท้อนะ ลองเช็ค URL อีกครั้ง หรือกดปุ่มข้างบนเลย!
       </motion.p>
     </motion.div>
-  );
+  )
 }
