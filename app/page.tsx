@@ -215,7 +215,7 @@ export default function LandingPage() {
                                 title: "[🎉] Raise Animals",
                             },
                             {
-                                image: "/MapImages/Restaurant_Tycoon_3.png",
+                                image: "/MapImages/Restaurant_Tycoon_3.webp",
                                 title: "Restaurant Tycoon 3",
                             },
                             // {
