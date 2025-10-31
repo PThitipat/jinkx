@@ -214,6 +214,10 @@ export default function LandingPage() {
                                 image: "/MapImages/raise_animals.png",
                                 title: "[🎉] Raise Animals",
                             },
+                            {
+                                image: "/MapImages/Restaurant_Tycoon_3.png",
+                                title: "Restaurant Tycoon 3",
+                            },
                             // {
                             //     image: "/MapImages/Fisch.webp",
                             //     title: "Fisch 🐟",
