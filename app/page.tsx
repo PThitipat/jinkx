@@ -218,6 +218,10 @@ export default function LandingPage() {
                                 image: "/MapImages/Restaurant_Tycoon_3.webp",
                                 title: "Restaurant Tycoon 3",
                             },
+                            {
+                                image: "/MapImages/anime_fight.webp",
+                                title: "[RELEASE] Anime Fight",
+                            },
                             // {
                             //     image: "/MapImages/Fisch.webp",
                             //     title: "Fisch 🐟",
