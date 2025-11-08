@@ -222,6 +222,10 @@ export default function LandingPage() {
                                 image: "/MapImages/anime_fight.webp",
                                 title: "[RELEASE] Anime Fight",
                             },
+                            {
+                                image: "/MapImages/DuelingGrounds.webp",
+                                title: "[RELEASE] Dueling Grounds",
+                            },
                             // {
                             //     image: "/MapImages/Fisch.webp",
                             //     title: "Fisch 🐟",
