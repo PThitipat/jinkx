@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { KeyRound, LinkIcon, Copy, Loader2 } from "lucide-react"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import Link from "next/link"
 
 interface KeyCardProps {
@@ -29,9 +29,27 @@ export function KeyCard({
   const [CreatedKey, setCreatedKey] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
 
-  const externalLink = "https://otieu.com/4/10024793"
+  const DirectLink = [
+    "https://otieu.com/4/10024793",
+    "https://otieu.com/4/9932455",
+    "https://otieu.com/4/9932451",
+    "https://otieu.com/4/9932452",
+    "https://otieu.com/4/9932453",
+    "https://otieu.com/4/9932460",
+    "https://otieu.com/4/9932454",
+    "https://otieu.com/4/9932456",
+    "https://otieu.com/4/9932457",
+    "https://otieu.com/4/9932459",
+    "https://otieu.com/4/9932458",
+  ]
 
-  /** ✅ ฟังก์ชันเปิดลิงก์แบบปลอดภัย (กัน SSR และ popup-blocker) */
+  // ✅ ล็อกลิงก์สุ่มไว้ ไม่เปลี่ยนทุก render
+  const randomUrl = useMemo(() => {
+    const idx = Math.floor(Math.random() * DirectLink.length)
+    return DirectLink[idx]
+  }, [DirectLink.length])
+
+  /** ✅ เปิดลิงก์แบบปลอดภัย */
   const safeOpenLink = (url: string) => {
     if (typeof window !== "undefined") {
       const newTab = window.open(url, "_blank", "noopener,noreferrer")
@@ -61,7 +79,7 @@ export function KeyCard({
     if (isDelaying || isLoading) return
 
     if (!isCompleted) {
-      safeOpenLink(externalLink)
+      safeOpenLink(randomUrl)
     }
 
     // Phase 1: 5 คลิกแรก
@@ -173,39 +191,39 @@ export function KeyCard({
 
         {/* Main Button */}
         {!CreatedKey && (
-            <>
-                {!isCompleted ? (
-                // 🟡 ถ้ายังไม่ครบ → ใช้ลิงก์แทนปุ่ม
-                <Link href={externalLink} passHref legacyBehavior>
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center justify-center w-full h-12 rounded-lg font-semibold text-base transition-all duration-200 select-none ${buttonColorClasses} ${
-                        isDelaying ? "cursor-not-allowed opacity-70" : ""
-                        }`}
-                        onClick={handleMultiClick}
-                    >
-                        <Icon className="w-5 h-5 mr-2" />
-                        {getButtonText()}
-                    </a>
-                </Link>
-                ) : (
-                <Button
-                    onClick={handleMultiClick}
-                    disabled={isDelaying || isLoading}
-                    className={`w-full h-12 rounded-lg font-semibold text-base transition-all duration-200 select-none ${buttonColorClasses} ${
+          <>
+            {!isCompleted ? (
+              // 🟡 ถ้ายังไม่ครบ → ใช้ลิงก์แทนปุ่ม
+              <Link href={randomUrl} passHref legacyBehavior>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center justify-center w-full h-12 rounded-lg font-semibold text-base transition-all duration-200 select-none ${buttonColorClasses} ${
                     isDelaying ? "cursor-not-allowed opacity-70" : ""
-                    }`}
+                  }`}
+                  onClick={handleMultiClick}
                 >
-                    {isLoading ? (
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    ) : (
-                    <Icon className="w-5 h-5 mr-2" />
-                    )}
-                    {getButtonText()}
-                </Button>
+                  <Icon className="w-5 h-5 mr-2" />
+                  {getButtonText()}
+                </a>
+              </Link>
+            ) : (
+              <Button
+                onClick={handleMultiClick}
+                disabled={isDelaying || isLoading}
+                className={`w-full h-12 rounded-lg font-semibold text-base transition-all duration-200 select-none ${buttonColorClasses} ${
+                  isDelaying ? "cursor-not-allowed opacity-70" : ""
+                }`}
+              >
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                ) : (
+                  <Icon className="w-5 h-5 mr-2" />
                 )}
-            </>
+                {getButtonText()}
+              </Button>
+            )}
+          </>
         )}
 
         {/* Key Display */}
