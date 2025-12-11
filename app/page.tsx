@@ -194,34 +194,34 @@ export default function LandingPage() {
                         <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
 
                         {[
-                            {
-                                image: "/MapImages/arise_ragnarok.webp",
-                                title: "Arise Ragnarok",
-                            },
+                            // {
+                            //     image: "/MapImages/arise_ragnarok.webp",
+                            //     title: "Arise Ragnarok",
+                            // },
                             {
                                 image: "/MapImages/FishIt.webp",
                                 title: "Fish It! 🐟",
                             },
-                            {
-                                image: "/MapImages/anime_eternal.webp",
-                                title: "[🎃Halloween Part 2] Anime Eternal",
-                            },
-                            {
-                                image: "/MapImages/roguepiece.webp",
-                                title: "[⚔️👻AIZEN] Rogue Piece",
-                            },
+                            // {
+                            //     image: "/MapImages/anime_eternal.webp",
+                            //     title: "[🎃Halloween Part 2] Anime Eternal",
+                            // },
+                            // {
+                            //     image: "/MapImages/roguepiece.webp",
+                            //     title: "[⚔️👻AIZEN] Rogue Piece",
+                            // },
                             {
                                 image: "/MapImages/raise_animals.png",
                                 title: "[🎉] Raise Animals",
                             },
-                            {
-                                image: "/MapImages/Restaurant_Tycoon_3.webp",
-                                title: "Restaurant Tycoon 3",
-                            },
-                            {
-                                image: "/MapImages/anime_fight.webp",
-                                title: "[RELEASE] Anime Fight",
-                            },
+                            // {
+                            //     image: "/MapImages/Restaurant_Tycoon_3.webp",
+                            //     title: "Restaurant Tycoon 3",
+                            // },
+                            // {
+                            //     image: "/MapImages/anime_fight.webp",
+                            //     title: "[RELEASE] Anime Fight",
+                            // },
                             {
                                 image: "/MapImages/DuelingGrounds.webp",
                                 title: "[RELEASE] Dueling Grounds",
