@@ -21,6 +21,11 @@ export function KeyCard({
   iconColor = "yellow",
   buttonColor = "yellow",
 }: KeyCardProps) {
+  // ✅ ตัวแปรสำหรับจำนวนคลิก - แก้ไขได้ง่าย
+  const PHASE1_CLICKS = 12
+  const PHASE2_CLICKS = 2
+  const TOTAL_CLICKS = PHASE1_CLICKS + PHASE2_CLICKS
+
   const [phase1Clicks, setPhase1Clicks] = useState(0)
   const [phase2Clicks, setPhase2Clicks] = useState(0)
   const [isDelaying, setIsDelaying] = useState(false)
@@ -82,20 +87,20 @@ export function KeyCard({
       safeOpenLink(randomUrl)
     }
 
-    // Phase 1: 5 คลิกแรก
-    if (phase1Clicks < 5) {
+    // Phase 1: คลิกแรก
+    if (phase1Clicks < PHASE1_CLICKS) {
       setPhase1Clicks(prev => prev + 1)
       setIsDelaying(true)
       setTimeout(() => setIsDelaying(false), 800)
       return
     }
 
-    // Phase 2: 3 คลิกถัดไป → เริ่มสร้าง Key
-    if (phase2Clicks < 3) {
+    // Phase 2: คลิกถัดไป → เริ่มสร้าง Key
+    if (phase2Clicks < PHASE2_CLICKS) {
       const newCount = phase2Clicks + 1
       setPhase2Clicks(newCount)
 
-      if (newCount === 3) {
+      if (newCount === PHASE2_CLICKS) {
         setIsCompleted(true)
         setIsLoading(true)
 
@@ -130,8 +135,8 @@ export function KeyCard({
   const getButtonText = () => {
     if (isLoading) return "Creating Key..."
     if (CreatedKey) return "Key Created ✅"
-    if (phase1Clicks < 5) return `Click ${5 - phase1Clicks} more`
-    if (phase2Clicks < 3) return `Click ${3 - phase2Clicks} more`
+    if (phase1Clicks < PHASE1_CLICKS) return `Direct Link - ${PHASE1_CLICKS - phase1Clicks}`
+    if (phase2Clicks < PHASE2_CLICKS) return `Direct Link - ${PHASE2_CLICKS - phase2Clicks}`
     return `Get Key - ${title}`
   }
 
@@ -163,7 +168,7 @@ export function KeyCard({
         {/* Progress Dots */}
         {!CreatedKey && (
           <div className="flex justify-center space-x-2 pt-2">
-            {[...Array(8)].map((_, i) => {
+            {[...Array(TOTAL_CLICKS)].map((_, i) => {
               const active = i < phase1Clicks + phase2Clicks
               return (
                 <div
