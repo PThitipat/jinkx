@@ -7,6 +7,7 @@ import { Copy } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 interface GameCardProps {
   title: string
@@ -59,56 +60,83 @@ export function GameCard({ title, image, features, onCopy }: GameCardProps) {
     };
 
     return (
-        <Card className="w-full max-w-lg overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md select-none">
-        <div className="relative">
-            <div className="aspect-video bg-black rounded-t-lg overflow-hidden">
-            <Image
-                src={image || "/placeholder.svg"}
-                alt={title}
-                width={400}
-                height={225}
-                className="w-full h-full object-cover"
-            />
-            </div>
-        </div>
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -5 }}
+        >
+            <Card className="w-full overflow-hidden border border-border/50 bg-card/50 backdrop-blur-md rounded-2xl shadow-lg transition-all hover:shadow-2xl select-none group">
+                <div className="relative overflow-hidden">
+                    <div className="aspect-video bg-muted rounded-t-2xl overflow-hidden">
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <Image
+                                src={image || "/placeholder.svg"}
+                                alt={title}
+                                width={400}
+                                height={225}
+                                className="w-full h-full object-cover"
+                            />
+                        </motion.div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
 
-        <CardContent className="p-4 space-y-4">
-            <h3 className="text-white text-lg font-semibold">{title}</h3>
+                <CardContent className="p-6 space-y-4">
+                    <h3 className="text-xl font-bold text-foreground">{title}</h3>
 
-            <div>
-            <p className="text-gray-300 text-sm font-medium mb-2">Key Features</p>
-            <div className="flex flex-wrap gap-2">
-                {features.map((feature, index) => (
-                <Badge
-                    key={index}
-                    variant="secondary"
-                    className="bg-gray-700 text-gray-200 hover:bg-gray-600 text-xs px-3 py-1"
-                >
-                    {feature}
-                </Badge>
-                ))}
-            </div>
-            </div>
+                    <div>
+                        <p className="text-muted-foreground text-sm font-medium mb-3">Key Features</p>
+                        <div className="flex flex-wrap gap-2">
+                            {features.map((feature, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.05 }}
+                                >
+                                    <Badge
+                                        variant="secondary"
+                                        className="bg-muted text-foreground hover:bg-muted/80 text-xs px-3 py-1.5 border border-border/50"
+                                    >
+                                        {feature}
+                                    </Badge>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
 
-            <div className="flex items-center justify-between pt-2">
-                <Link className="w-full" href="https://otieu.com/4/10024793" target="_blank">
-                    <Button variant="outline"
-                        onClick={handleMultiClick}
-                        disabled={isDelaying}
-                        className={`w-full px-6 py-2 rounded-md flex items-center gap-2 transition-all duration-200 select-none ${
-                        isCompleted
-                            ? "hover:bg-green-600"
-                            : isDelaying
-                            ? "cursor-not-allowed"
-                            : ""
-                        } text-white`}
-                    >
-                        <Copy className="w-4 h-4" />
-                        {getButtonText()}
-                    </Button>
-                </Link>
-            </div>
-        </CardContent>
-        </Card>
+                    <div className="flex items-center justify-between pt-2">
+                        <Link className="w-full" href="https://otieu.com/4/10024793" target="_blank">
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <Button
+                                    variant="outline"
+                                    onClick={handleMultiClick}
+                                    disabled={isDelaying}
+                                    className={`w-full h-12 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 select-none shadow-lg hover:shadow-xl ${
+                                        isCompleted
+                                            ? "bg-green-500 hover:bg-green-600 text-white border-green-500"
+                                            : isDelaying
+                                            ? "cursor-not-allowed opacity-70"
+                                            : "border-border/50 hover:border-primary/50"
+                                    }`}
+                                >
+                                    <Copy className="w-4 h-4" />
+                                    {getButtonText()}
+                                </Button>
+                            </motion.div>
+                        </Link>
+                    </div>
+                </CardContent>
+            </Card>
+        </motion.div>
     )
 }

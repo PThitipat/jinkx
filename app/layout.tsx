@@ -1,10 +1,14 @@
 import type React from "react"
 import "@/styles/globals.css"
-import { Inter } from "next/font/google"
+import { Kanit } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
 
-const inter = Inter({ subsets: ["latin"] })
+const kanit = Kanit({ 
+  subsets: ["latin", "thai"],
+  weight: "300"
+})
 
 export const metadata: Metadata = {
   title: "JinkX | Roblox Script Hub & Automation Tools",
@@ -170,7 +174,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={kanit.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -178,6 +182,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
     </html>

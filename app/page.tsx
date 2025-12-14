@@ -8,13 +8,9 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 import Navbar from "@/components/Nav";
-import { HeartHandshake } from "@/components/HeartHandshake";
-import { Activity } from "@/components/Activity";
-import { Users } from "@/components/Users";
 import { GameCard } from "@/components/game-card";
-import { KeyCard } from "@/components/key-card";
+import { toast } from "sonner"
 
 export default function LandingPage() {
 
@@ -22,10 +18,15 @@ export default function LandingPage() {
         const textToCopy = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/stormskmonkey/JinkX/refs/heads/main/Loader.lua"))()';
         navigator.clipboard.writeText(textToCopy)
             .then(() => {
-                console.log("Copied to clipboard!");
+                toast.success("Script copied to clipboard!", {
+                    description: "You can now paste it in your executor"
+                })
             })
             .catch((err) => {
                 console.error("Failed to copy: ", err);
+                toast.error("Failed to copy script", {
+                    description: "Please try again"
+                })
             });
     };
 
@@ -44,250 +45,182 @@ export default function LandingPage() {
         show: { opacity: 1, y: 0 },
     }
 
-    const features = [
-        {
-            title: "Smart Automation",
-            description: "Automate tasks effortlessly with intelligent tools.",
-            icon: <Users className="size-5" />,
-        },
-        {
-            title: "Premium Quality",
-            description: "Enjoy top-tier performance and reliability every time.",
-            icon: <Activity className="size-5" />,
-        },
-        {
-            title: "Customer Support",
-            description: "Get fast, friendly help whenever you need it.",
-            icon: <HeartHandshake className="size-5" />,
-        },
-    ];
 
     return (
-        <div className="flex min-h-[100dvh] flex-col">
-            <Navbar></Navbar>
+        <div className="flex min-h-[100dvh] flex-col bg-background">
+            <Navbar />
 
-            {/* Get Key Section */}
-            <section id="getkey" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-                <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
-
-                <div className="container px-4 md:px-6 relative">
-                    <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-                    >
-                    <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                        Key Systems
-                    </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get your 4Hr key.</h2>
-                    <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                        Unlock full access with a 4-hour key — fast, secure, and hassle-free
-                    </p>
-                    </motion.div>
-
-                    <div className="relative">
-                    <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
-
-                        <motion.div>
-                            <KeyCard
-                                title="Key Systems"
-                                description="Press the button to generate your access key."
-                                features={[
-                                    "Click 8 times to unlock phase 2",
-                                    "Click 3 times more to generate the key",
-                                    "Key will expire in 4 hours",
-                                ]}
-                            />
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            <main className="flex-1" id="#home">
+            <main className="flex-1 pt-16 md:pt-20" id="home">
                 {/* Hero Section */}
-                <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
-                <div className="container px-4 md:px-6 relative">
-                    <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-
-                    <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center max-w-3xl mx-auto mb-12"
-                    >
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 
-                    bg-clip-text text-transparent 
-                    bg-gradient-to-r from-black to-red-700">
-                    JinkX
-                    </h1>
-                    <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                        The all-in-one platform that helps teams collaborate, automate, and deliver exceptional results.
-                        Streamline your processes and focus on what matters most.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="https://discord.gg/XAfp5RsQ4M" target="_blank" rel="noopener noreferrer">
-                            <Button size="lg" variant="outline" className="rounded-full h-12 px-8 text-base border border-red-700">
-                            Join Discord
-                            <ArrowRight className="ml-2 size-4" />
-                            </Button>
-                        </a>
+                <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
+                    {/* Animated Background */}
+                    <div className="absolute inset-0 -z-10">
+                        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20"></div>
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent"></div>
                     </div>
-                    <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                        <Check className="size-4 text-primary" />
-                        <span>100% Free script</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                        <Check className="size-4 text-primary" />
-                        <span>24 hrs trial</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                        <Check className="size-4 text-primary" />
-                        <span>Undetected</span>
-                        </div>
-                    </div>
-                    </motion.div>
 
-                    <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    className="relative mx-auto max-w-5xl"
-                    >
-                    <div className="rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-gradient-to-b from-background to-muted/20">
-                        <Image
-                        src="https://img5.pic.in.th/file/secure-sv1/image2c7a0b70af9677c3.png"
-                        width={1280}
-                        height={720}
-                        alt="SaaSify dashboard"
-                        className="w-full h-auto"
-                        priority
-                        />
-                        <div className=""></div>
-                    </div>
-                    <div className="absolute -bottom-6 -right-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl opacity-70"></div>
-                    <div className="absolute -top-6 -left-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-secondary/30 to-primary/30 blur-3xl opacity-70"></div>
-                    </motion.div>
-                </div>
-                </section>
+                    <div className="container mx-auto px-4 md:px-6 relative z-10">
+                        <div className="max-w-4xl mx-auto text-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                className="space-y-6 mb-12"
+                            >
+                                <motion.h1
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.1 }}
+                                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+                                >
+                                    <span className="bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
+                                        Experience the Best{" "}
+                                        <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
+                                            Free Script
+                                        </span>
+                                    </span>
+                                </motion.h1>
+                                
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                    className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+                                >
+                                    JinkX provides lightning-fast execution, and a simple interface — all completely freemium.
+                                </motion.p>
 
-                {/* How It Works Section */}
-                <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-                    <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.3 }}
+                                    className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+                                >
+                                    <a href="https://discord.gg/XAfp5RsQ4M" target="_blank" rel="noopener noreferrer">
+                                        <Button 
+                                            size="lg" 
+                                            className="h-12 px-8 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-medium text-base shadow-lg hover:shadow-xl transition-all"
+                                        >
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                width="20" 
+                                                height="20" 
+                                                viewBox="0 0 24 24" 
+                                                fill="currentColor" 
+                                                className="mr-2"
+                                            >
+                                                <path d="M14.983 3l.123 .006c2.014 .214 3.527 .672 4.966 1.673a1 1 0 0 1 .371 .488c1.876 5.315 2.373 9.987 1.451 12.28c-1.003 2.005 -2.606 3.553 -4.394 3.553c-.732 0 -1.693 -.968 -2.328 -2.045a21.512 21.512 0 0 0 2.103 -.493a1 1 0 1 0 -.55 -1.924c-3.32 .95 -6.13 .95 -9.45 0a1 1 0 0 0 -.55 1.924c.717 .204 1.416 .37 2.103 .494c-.635 1.075 -1.596 2.044 -2.328 2.044c-1.788 0 -3.391 -1.548 -4.428 -3.629c-.888 -2.217 -.39 -6.89 1.485 -12.204a1 1 0 0 1 .371 -.488c1.439 -1.001 2.952 -1.459 4.966 -1.673a1 1 0 0 1 .935 .435l.063 .107l.651 1.285l.137 -.016a12.97 12.97 0 0 1 2.643 0l.134 .016l.65 -1.284a1 1 0 0 1 .754 -.54l.122 -.009zm-5.983 7a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15zm6 0a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l-.005 .15a2 2 0 1 0 1.995 -2.15z"></path>
+                                            </svg>
+                                            Join Discord
+                                        </Button>
+                                    </a>
+                                </motion.div>
 
-                    <div className="container px-4 md:px-6 relative">
-                        <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-                        >
-                        <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                            Roblox Map Support
-                        </Badge>
-                        </motion.div>
-
-                        <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative">
-                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
-
-                        {[
-                            // {
-                            //     image: "/MapImages/arise_ragnarok.webp",
-                            //     title: "Arise Ragnarok",
-                            // },
-                            {
-                                image: "/MapImages/FishIt.webp",
-                                title: "Fish It! 🐟",
-                            },
-                            // {
-                            //     image: "/MapImages/anime_eternal.webp",
-                            //     title: "[🎃Halloween Part 2] Anime Eternal",
-                            // },
-                            // {
-                            //     image: "/MapImages/roguepiece.webp",
-                            //     title: "[⚔️👻AIZEN] Rogue Piece",
-                            // },
-                            {
-                                image: "/MapImages/raise_animals.png",
-                                title: "[🎉] Raise Animals",
-                            },
-                            // {
-                            //     image: "/MapImages/Restaurant_Tycoon_3.webp",
-                            //     title: "Restaurant Tycoon 3",
-                            // },
-                            // {
-                            //     image: "/MapImages/anime_fight.webp",
-                            //     title: "[RELEASE] Anime Fight",
-                            // },
-                            {
-                                image: "/MapImages/DuelingGrounds.webp",
-                                title: "[RELEASE] Dueling Grounds",
-                            },
-                            // {
-                            //     image: "/MapImages/Fisch.webp",
-                            //     title: "Fisch 🐟",
-                            // },
-                        ].map((step, i) => (
-                            <motion.div key={i} variants={item}>
-                            <GameCard
-                                title={step.title}
-                                image={step.image}
-                                features={["Auto Farm", "ESP", "Walk Speed"]}
-                                onCopy={handleCopy}
-                            />
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    className="flex flex-wrap items-center justify-center gap-6 pt-8 text-sm text-muted-foreground"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <Check className="size-5 text-green-500" />
+                                        <span>100% Free script</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Check className="size-5 text-green-500" />
+                                        <span>24 hrs trial</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Check className="size-5 text-green-500" />
+                                        <span>Undetected</span>
+                                    </div>
+                                </motion.div>
                             </motion.div>
-                        ))}
-                        </div>
-                    </div>
-                </section>
-                
-                {/* Features Section */}
-                <section id="About Us" className="w-full py-20 md:py-32">
-                    <div className="container px-4 md:px-6">
-                        <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-                        >
-                        <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                            About Us
-                        </Badge>
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Everything You Need to Succeed</h2>
-                        <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                            Our comprehensive platform provides all the tools you need to streamline your workflow, boost
-                            productivity, and achieve your goals.
-                        </p>
-                        </motion.div>
 
-                        <motion.div
-                        variants={container}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                        >
-                        {features.map((feature, i) => (
-                            <motion.div key={i} variants={item}>
-                            <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
-                                <CardContent className="p-6 flex flex-col h-full">
-                                <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
-                                    {feature.icon}
+                            <motion.div
+                                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ duration: 0.8, delay: 0.5 }}
+                                className="relative mt-16"
+                            >
+                                <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card/50 backdrop-blur-sm">
+                                    <Image
+                                        src="https://img5.pic.in.th/file/secure-sv1/image2c7a0b70af9677c3.png"
+                                        width={1280}
+                                        height={720}
+                                        alt="JinkX Dashboard"
+                                        className="w-full h-auto"
+                                        priority
+                                    />
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                                <p className="text-muted-foreground">{feature.description}</p>
-                                </CardContent>
-                            </Card>
+                                <div className="absolute -z-10 -bottom-10 -right-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
+                                <div className="absolute -z-10 -top-10 -left-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
                             </motion.div>
-                        ))}
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 
+                {/* Roblox Map Support Section */}
+                <section className="w-full py-20 md:py-32 relative overflow-hidden">
+                    <div className="container mx-auto px-4 md:px-6 relative">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="text-center mb-16"
+                        >
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                                className="text-3xl md:text-5xl font-bold mb-4"
+                            >
+                                JinkX Map Support
+                            </motion.h2>
+                        </motion.div>
+
+                        <motion.div
+                            variants={container}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                        >
+                            {[
+                                {
+                                    image: "/MapImages/FishIt.webp",
+                                    title: "Fish It! 🐟",
+                                },
+                                {
+                                    image: "/MapImages/raise_animals.png",
+                                    title: "[🎉] Raise Animals",
+                                },
+                                {
+                                    image: "/MapImages/DuelingGrounds.webp",
+                                    title: "[RELEASE] Dueling Grounds",
+                                },
+                            ].map((step, i) => (
+                                <motion.div 
+                                    key={i} 
+                                    variants={item}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                >
+                                    <GameCard
+                                        title={step.title}
+                                        image={step.image}
+                                        features={["Auto Farm", "ESP", "Walk Speed"]}
+                                        onCopy={handleCopy}
+                                    />
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </section>
             </main>
         </div>
     )
