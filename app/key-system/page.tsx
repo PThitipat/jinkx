@@ -43,7 +43,7 @@ export default function KeySystemPage() {
                                 className="text-center mb-12"
                             >
                                 <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white dark:text-white">
-                                Get Freemium Access to JinkX
+                                Get Freemium Access to <span className="brand-jinkx">JinkX</span>
                                 </h1>
                                 <p className="text-md text-white/70 dark:text-white/70 max-w-2xl mx-auto">
                                 Generate your 4-hour access key instantly. You can keep up to 5 active keys at the same time for maximum convenience and flexibility.

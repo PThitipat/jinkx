@@ -183,6 +183,24 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="top-center" richColors />
+
+          {/* Global footer */}
+          <footer className="w-full border-t border-white/10 bg-background/60 backdrop-blur-sm">
+            <div className="container mx-auto px-4 py-6 flex items-center justify-center gap-2 text-sm text-white/70">
+              <span>© 2025</span>
+              <span>|</span>
+              <a
+                href="https://discord.gg/JinkX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary transition-colors font-medium"
+              >
+                JinkX
+              </a>
+              <span>|</span>
+              <span>All rights reserved</span>
+            </div>
+          </footer>
         </ThemeProvider>
       </body>
     </html>

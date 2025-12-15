@@ -6,6 +6,25 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Brand red for the word JinkX */
+  .brand-jinkx {
+    background: linear-gradient(90deg, #ff3b3b 0%, #ff5c5c 50%, #ff7b7b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ใช้กับ div ที่ overflow */
+  .no-scrollbar {
+    -ms-overflow-style: none !important; /* IE/Edge เก่า */
+    scrollbar-width: none !important; /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important; /* กันเหนียว */
+  }
 }
 
 @layer base {
@@ -46,6 +65,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -80,13 +100,46 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
-  body {
+
+  html,
+  body,
+  #__next {
     @apply bg-background text-foreground;
+    position: relative;
+    min-height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  @keyframes jx-particles {
+    0% { transform: translateY(-10%); }
+    100% { transform: translateY(110%); }
+  }
+
+  /* ====== ซ่อน scrollbar แบบ “ทั้งเว็บ” ====== */
+  html, body {
+    -ms-overflow-style: none !important; /* IE/Edge เก่า */
+    scrollbar-width: none !important; /* Firefox */
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  /* เผื่อมี container อื่น ๆ เป็นตัว scroll จริง (แก้เคสในกล่อง list) */
+  :where(*) {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  :where(*::-webkit-scrollbar) {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
   }
 }

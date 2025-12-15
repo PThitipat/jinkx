@@ -107,7 +107,7 @@ export default function DonatePage() {
                   Donate
                 </h1>
                 <p className="text-lg text-white/70 dark:text-white/70 max-w-2xl mx-auto">
-                  Support JinkX development with cryptocurrency
+                  Support <span className="brand-jinkx">JinkX</span> development with cryptocurrency
                 </p>
               </motion.div>
 
@@ -201,7 +201,7 @@ export default function DonatePage() {
                   ⚠️ Make sure you're sending on the correct network (TRC20 or BEP20)
                 </p>
                 <p className="text-xs text-white/60 text-center">
-                  Thank you for supporting JinkX! 🙏
+                  Thank you for supporting <span className="brand-jinkx">JinkX</span>! 🙏
                 </p>
               </motion.div>
             </motion.div>

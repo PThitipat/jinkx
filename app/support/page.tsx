@@ -67,7 +67,7 @@ export default function SupportPage() {
                                     Support
                                 </h1>
                                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                                    We're here to help you get the most out of JinkX
+                                    We're here to help you get the most out of <span className="brand-jinkx">JinkX</span>
                                 </p>
                             </motion.div>
 

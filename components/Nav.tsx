@@ -60,7 +60,7 @@ export default function Navbar() {
                             />
                         </motion.div>
                         <motion.span
-                            className="text-xl md:text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-foreground group-hover:to-foreground transition-all"
+                            className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#ff3b3b] via-[#ff5c5c] to-[#ff7b7b] bg-clip-text text-transparent group-hover:from-[#ff4a4a] group-hover:via-[#ff6a6a] group-hover:to-[#ff8a8a] transition-all"
                             whileHover={{ scale: 1.05 }}
                         >
                             JinkX
