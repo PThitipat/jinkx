@@ -34,15 +34,20 @@ export default function LandingPage() {
     const container = {
         hidden: { opacity: 0 },
         show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-        },
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
         },
     }
 
     const item = {
         hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 },
+    }
+
+    const fadeUp = {
+        hidden: { opacity: 0, y: 16 },
         show: { opacity: 1, y: 0 },
     }
 
@@ -64,8 +69,17 @@ export default function LandingPage() {
                             {/* Left: Floating logo only; buttons stay static */}
                             <div className="flex flex-col items-center justify-center gap-6">
                                 <motion.div
-                                    animate={{ y: [-12, 12, -12] }}
-                                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                                    animate={{
+                                        opacity: 1,
+                                        scale: 1,
+                                        y: [-12, 12, -12],
+                                    }}
+                                    transition={{
+                                        opacity: { duration: 0.4 },
+                                        scale: { duration: 0.4 },
+                                        y: { duration: 5.5, repeat: Infinity, ease: "easeInOut" },
+                                    }}
                                 >
                                     <Image
                                         src="https://jinkx.pro/Logo.png"
@@ -77,33 +91,57 @@ export default function LandingPage() {
                                     />
                                 </motion.div>
                                 <div className="flex flex-row flex-wrap justify-center gap-3 pb-4">
-                                    <Button asChild variant="outline" className="text-base px-6">
-                                        <a
-                                            href="https://discord.gg/JinkX"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="flex items-center gap-2"
-                                        >
-                                            Join Discord
-                                        </a>
-                                    </Button>
-                                    <Button asChild variant="outline" className="text-base px-6">
-                                        <Link href="/key-system" className="flex items-center gap-2">
-                                            Get Key
-                                            <ArrowRight className="h-4 w-4" />
-                                        </Link>
-                                    </Button>
+                                    <motion.div
+                                        initial="hidden"
+                                        animate="show"
+                                        variants={fadeUp}
+                                        transition={{ duration: 0.4, delay: 0.05 }}
+                                        whileHover={{ scale: 1.03 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        <Button asChild variant="outline" className="text-base px-6">
+                                            <a
+                                                href="https://discord.gg/JinkX"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex items-center gap-2"
+                                            >
+                                                Join Discord
+                                            </a>
+                                        </Button>
+                                    </motion.div>
+                                    <motion.div
+                                        initial="hidden"
+                                        animate="show"
+                                        variants={fadeUp}
+                                        transition={{ duration: 0.4, delay: 0.1 }}
+                                        whileHover={{ scale: 1.03 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        <Button asChild variant="outline" className="text-base px-6">
+                                            <Link href="/key-system" className="flex items-center gap-2">
+                                                Get Key
+                                                <ArrowRight className="h-4 w-4" />
+                                            </Link>
+                                        </Button>
+                                    </motion.div>
                                 </div>
                             </div>
 
                             {/* Right: JinkX Map Support list (no outer card) */}
-                            <div className="space-y-4 w-full max-w-xl">
-                                <div className="flex items-center gap-3">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, amount: 0.2 }}
+                                variants={container}
+                                className="space-y-4 w-full max-w-xl"
+                            >
+                                <motion.div variants={item} className="flex items-center gap-3">
                                     <h3 className="text-2xl font-bold text-white"><span className="brand-jinkx">JinkX</span> Map Support</h3>
                                     <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
                                         Live
                                     </Badge>
-                                </div>
+                                </motion.div>
                                 <div className="relative">
                                     <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background via-background/35 to-transparent pointer-events-none"></div>
                                     <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background via-background/35 to-transparent pointer-events-none"></div>
@@ -120,9 +158,11 @@ export default function LandingPage() {
                                             { title: "[🎉] Raise Animals", image: "/MapImages/raise_animals.png" },
                                             { title: "[RELEASE] Dueling Grounds", image: "/MapImages/DuelingGrounds.webp" },
                                         ].map((game, idx) => (
-                                            <div
+                                            <motion.div
                                                 key={idx}
-                                                className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 p-3 shadow-lg">
+                                                variants={item}
+                                                className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 p-3 shadow-lg"
+                                            >
                                                 <div className="relative h-14 w-20 overflow-hidden rounded-lg bg-black/40 border border-white/10">
                                                     <Image
                                                         src={game.image}
@@ -142,11 +182,11 @@ export default function LandingPage() {
                                                         <span className="text-xs text-white/70">Online</span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </motion.div>
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </section>

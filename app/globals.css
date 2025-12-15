@@ -111,7 +111,7 @@
     @apply bg-background text-foreground;
     position: relative;
     min-height: 100%;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
@@ -141,5 +141,16 @@
     width: 0 !important;
     height: 0 !important;
     display: none !important;
+  }
+
+  /* กันเหนียว: บังคับซ่อน scrollbar ทุก element */
+  * {
+    scrollbar-width: none !important;
+  }
+  *::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
   }
 }
