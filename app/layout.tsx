@@ -155,7 +155,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "JinkX",
               url: "https://jinkx.pro",
-              logo: "https://jinkx.pro/logo.png",
+              logo: "https://jinkx.pro/Logo.png",
               sameAs: [
                 "https://twitter.com/JinkXOfficial",
                 "https://discord.gg/JinkX",
