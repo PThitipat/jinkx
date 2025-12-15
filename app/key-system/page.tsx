@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Script from "next/script"
 import { useState, useEffect } from "react"
 import Navbar from "@/components/Nav"
 import { KeyCard } from "@/components/key-card"
@@ -16,6 +17,13 @@ export default function KeySystemPage() {
 
     return (
         <div className="flex min-h-[100dvh] flex-col bg-background">
+            {/* Monetag is scoped to this page only */}
+            <Script
+                src="https://fpyf8.com/88/tag.min.js"
+                data-zone="177335"
+                data-cfasync="false"
+                strategy="afterInteractive"
+            />
             <Navbar />
             
             <StreamModal isOpen={showModal} onClose={() => setShowModal(false)} />

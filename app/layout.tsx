@@ -146,14 +146,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Monetag */}
-        <script
-          src="https://fpyf8.com/88/tag.min.js"
-          data-zone="177335"
-          async
-          data-cfasync="false"
-        ></script>
-
         {/* Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
