@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { KeyRound, LinkIcon, Copy, Loader2, CheckCircle2, Clock, Trash2, Check, Plus } from "lucide-react"
-import { useMemo, useState, useEffect } from "react"
+import { useMemo, useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast } from "sonner"
+import HCaptcha from "@hcaptcha/react-hcaptcha"
 
 interface KeyCardProps {
   title: string
@@ -48,6 +49,8 @@ export function KeyCard({
   const [timeLeft, setTimeLeft] = useState<number | null>(null) // เวลาเหลือในวินาที
   const [storedKeys, setStoredKeys] = useState<StoredKey[]>([])
   const [copiedKeyId, setCopiedKeyId] = useState<string | null>(null)
+  const [hcaptchaToken, setHcaptchaToken] = useState<string | null>(null)
+  const hcaptchaRef = useRef<HCaptcha>(null)
 
   // Countdown timer สำหรับ 4 ชั่วโมง (14400 วินาที)
   useEffect(() => {
@@ -193,6 +196,8 @@ export function KeyCard({
     setCreatedKey(null)
     setCopied(false)
     setTimeLeft(null)
+    setHcaptchaToken(null)
+    hcaptchaRef.current?.resetCaptcha()
     toast.info("Ready to create a new key")
   }
 
@@ -269,6 +274,15 @@ export function KeyCard({
       setPhase2Clicks(newCount)
 
       if (newCount === PHASE2_CLICKS) {
+        // Check if hCaptcha is completed
+        if (!hcaptchaToken) {
+          toast.error("Please complete the captcha", {
+            description: "You need to verify you're human"
+          })
+          setPhase2Clicks(phase2Clicks) // Reset to previous count
+          return
+        }
+
         setIsCompleted(true)
         setIsLoading(true)
 
@@ -276,9 +290,31 @@ export function KeyCard({
           const res = await fetch("/api/create-key", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ hcaptchaToken }),
           })
 
-          if (!res.ok) throw new Error(`HTTP ${res.status}`)
+          if (!res.ok) {
+            const errorData = await res.json().catch(() => ({}))
+            if (res.status === 429) {
+              toast.error("Too many requests", {
+                description: "Please wait a moment before trying again"
+              })
+            } else if (res.status === 400) {
+              toast.error("Verification failed", {
+                description: errorData.error || "Please try again"
+              })
+              // Reset hCaptcha
+              hcaptchaRef.current?.resetCaptcha()
+              setHcaptchaToken(null)
+            } else {
+              throw new Error(`HTTP ${res.status}`)
+            }
+            setIsLoading(false)
+            setPhase2Clicks(phase2Clicks) // Reset to previous count
+            setIsCompleted(false)
+            return
+          }
+
           const data = await res.json()
           const key =
             data?.luarmor_data?.user_key ||
@@ -309,6 +345,10 @@ export function KeyCard({
             setStoredKeys(updatedKeys)
             saveKeysToStorage(updatedKeys)
             
+            // Reset hCaptcha
+            hcaptchaRef.current?.resetCaptcha()
+            setHcaptchaToken(null)
+            
             toast.success("Key generated successfully!", {
               description: `You can keep up to ${MAX_KEYS} active keys`
             })
@@ -316,6 +356,9 @@ export function KeyCard({
             toast.error("Failed to generate key", {
               description: "Please try again later"
             })
+            // Reset hCaptcha on error
+            hcaptchaRef.current?.resetCaptcha()
+            setHcaptchaToken(null)
           }
         } catch (err) {
           console.error("Error creating key:", err)
@@ -323,6 +366,9 @@ export function KeyCard({
           toast.error("Error creating key", {
             description: "Please try again"
           })
+          // Reset hCaptcha on error
+          hcaptchaRef.current?.resetCaptcha()
+          setHcaptchaToken(null)
         } finally {
           setIsLoading(false)
         }
@@ -502,6 +548,33 @@ export function KeyCard({
               ))}
             </ol>
           </div>
+        )}
+
+        {/* hCaptcha - Show when Phase 2 starts */}
+        {!CreatedKey && phase1Clicks >= PHASE1_CLICKS && phase2Clicks < PHASE2_CLICKS && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white/5 border border-white/10 rounded-lg p-4 backdrop-blur-sm flex flex-col items-center"
+          >
+            <p className="text-white/80 text-sm mb-3 text-center">Please verify you're human</p>
+            <HCaptcha
+              sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+              onVerify={(token) => {
+                setHcaptchaToken(token)
+                toast.success("Verification complete")
+              }}
+              onError={() => {
+                toast.error("Captcha verification failed")
+                setHcaptchaToken(null)
+              }}
+              onExpire={() => {
+                toast.info("Captcha expired, please verify again")
+                setHcaptchaToken(null)
+              }}
+              ref={hcaptchaRef}
+            />
+          </motion.div>
         )}
 
         {/* Main Button */}
