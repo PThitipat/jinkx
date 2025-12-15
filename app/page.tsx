@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import {
     Check,
@@ -60,21 +61,40 @@ export default function LandingPage() {
 
                     <div className="container mx-auto px-4 md:px-6 relative z-10">
                         <div className="grid lg:grid-cols-2">
-                            {/* Left: Floating logo only */}
-                            <motion.div
-                                animate={{ y: [-12, 12, -12] }}
-                                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                                className="flex justify-center"
-                            >
-                                <Image
-                                    src="https://jinkx.pro/Logo.png"
-                                    alt="JinkX Logo"
-                                    width={320}
-                                    height={320}
-                                    className="w-64 h-64 md:w-72 md:h-72 object-contain drop-shadow-2xl"
-                                    priority
-                                />
-                            </motion.div>
+                            {/* Left: Floating logo only; buttons stay static */}
+                            <div className="flex flex-col items-center justify-center gap-6">
+                                <motion.div
+                                    animate={{ y: [-12, 12, -12] }}
+                                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                                >
+                                    <Image
+                                        src="https://jinkx.pro/Logo.png"
+                                        alt="JinkX Logo"
+                                        width={320}
+                                        height={320}
+                                        className="w-64 h-64 md:w-72 md:h-72 object-contain drop-shadow-2xl"
+                                        priority
+                                    />
+                                </motion.div>
+                                <div className="flex flex-row flex-wrap justify-center gap-3 pb-4">
+                                    <Button asChild variant="outline" className="text-base px-6">
+                                        <a
+                                            href="https://discord.gg/JinkX"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex items-center gap-2"
+                                        >
+                                            Join Discord
+                                        </a>
+                                    </Button>
+                                    <Button asChild variant="outline" className="text-base px-6">
+                                        <Link href="/key-system" className="flex items-center gap-2">
+                                            Get Key
+                                            <ArrowRight className="h-4 w-4" />
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </div>
 
                             {/* Right: JinkX Map Support list (no outer card) */}
                             <div className="space-y-4 w-full max-w-xl">
