@@ -67,7 +67,7 @@ export default function LandingPage() {
                                 className="flex justify-center"
                             >
                                 <Image
-                                    src="/Logo.png"
+                                    src="https://jinkx.pro/Logo.png"
                                     alt="JinkX Logo"
                                     width={320}
                                     height={320}
