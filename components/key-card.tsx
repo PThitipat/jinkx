@@ -402,10 +402,10 @@ export function KeyCard({
   const Icon = iconColor === "purple" ? KeyRound : LinkIcon
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto p-6 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/5 group-hover:border-white/20 group">
-      <div className="grid md:grid-cols-2 gap-6">
+    <div className="relative w-full max-w-6xl mx-auto p-4 sm:p-6 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/5 group-hover:border-white/20 group">
+      <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
         {/* Left Column - Video Section */}
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-4 sm:space-y-6">
           <div className="relative aspect-video bg-black/40 rounded-lg overflow-hidden border border-white/10">
             <iframe
               src="https://www.youtube.com/embed/S4Chxpyq9XE?autoplay=1&mute=1&controls=1&loop=1&playlist=S4Chxpyq9XE"
@@ -417,7 +417,7 @@ export function KeyCard({
           </div>
           
           {/* Video Info */}
-          <div className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-3">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 space-y-3">
             <h4 className="text-lg font-semibold text-white">How to Use</h4>
             <ul className="space-y-2 text-sm text-white/70">
               <li className="flex items-start gap-2">
@@ -437,7 +437,7 @@ export function KeyCard({
         </div>
 
         {/* Right Column - Key Generation System */}
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-5 sm:space-y-6">
           {/* Icon & Title */}
           <div className="flex flex-col items-center text-center space-y-4">
           <motion.div
@@ -454,7 +454,7 @@ export function KeyCard({
 
         {/* Progress Indicator */}
         {!CreatedKey && (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {/* Progress Bar */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -532,8 +532,8 @@ export function KeyCard({
 
         {/* Instructions */}
         {!CreatedKey && (
-          <div className="bg-white/5 border border-white/10 rounded-lg p-5 backdrop-blur-sm">
-            <ol className="space-y-3 text-white/80 text-sm">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5 backdrop-blur-sm">
+            <ol className="space-y-2 sm:space-y-3 text-white/80 text-sm">
               {features.map((feature, index) => (
                 <motion.li
                   key={index}
@@ -680,12 +680,12 @@ export function KeyCard({
 
         {/* Stored Keys List */}
         {storedKeys.length > 0 && (
-          <div className="mt-6 space-y-4">
-            <div className="flex items-center justify-between">
+          <div className="mt-6 space-y-3 sm:space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
               <h3 className="text-lg font-semibold text-white">Active Keys ({storedKeys.length}/{MAX_KEYS})</h3>
               <p className="text-xs text-white/60">You can keep up to {MAX_KEYS} active keys</p>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               <AnimatePresence mode="popLayout">
                 {storedKeys.map((storedKey, index) => {
                   const keyTimeLeft = getTimeLeft(storedKey.expiresAt)
@@ -703,7 +703,7 @@ export function KeyCard({
                       transition={{ delay: index * 0.1 }}
                       className="bg-white/5 border border-white/10 rounded-lg p-4 backdrop-blur-sm"
                     >
-                      <div className="flex items-start justify-between gap-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-2">
                             <KeyRound className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -721,7 +721,7 @@ export function KeyCard({
                             </span>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 flex-shrink-0">
+                        <div className="flex items-center gap-2 flex-shrink-0 mt-2 sm:mt-0">
                           <button
                             onClick={() => handleCopyStoredKey(storedKey.key, storedKey.id)}
                             className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all"
