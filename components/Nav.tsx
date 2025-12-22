@@ -31,8 +31,8 @@ export default function Navbar() {
         { href: "/executors", label: "Executors" },
         { href: "/key-system", label: "Key Systems" },
         { href: "https://www.youtube.com/@JinkX-Script", label: "Showcases", external: true },
-        { href: "/support", label: "Support" },
         { href: "/donate", label: "Donate" },
+        { href: "/terms", label: "Terms" },
     ]
     
     return (
