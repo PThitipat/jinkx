@@ -156,7 +156,9 @@ export default function LandingPage() {
                                         {[
                                             { title: "Fish It!", image: "/MapImages/FishIt.webp" },
                                             { title: "[🎉] Raise Animals", image: "/MapImages/raise_animals.png" },
-                                            { title: "[RELEASE] Dueling Grounds", image: "/MapImages/DuelingGrounds.webp" },
+                                            { title: "Dueling Grounds ⚔️", image: "/MapImages/DuelingGrounds.webp" },
+                                            { title: "Arise Ragnarok [🔓 Release ]", image: "/MapImages/new_arise_ragnarok.webp" },
+                                            { title: "Violence District", image: "/MapImages/violence_district.webp" },
                                         ].map((game, idx) => (
                                             <motion.div
                                                 key={idx}

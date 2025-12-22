@@ -28,7 +28,9 @@ export default function Navbar() {
 
     const navItems = [
         { href: "/", label: "Home" },
+        { href: "/executors", label: "Executors" },
         { href: "/key-system", label: "Key Systems" },
+        { href: "https://www.youtube.com/@JinkX-Script", label: "Showcases", external: true },
         { href: "/support", label: "Support" },
         { href: "/donate", label: "Donate" },
     ]
@@ -76,13 +78,25 @@ export default function Navbar() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 + 0.2 }}
                             >
-                                <Link
-                                    href={item.href}
-                                    className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
-                                >
-                                    {item.label}
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300"></span>
-                                </Link>
+                                {item.external ? (
+                                    <a
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                                    >
+                                        {item.label}
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300"></span>
+                                    </a>
+                                ) : (
+                                    <Link
+                                        href={item.href}
+                                        className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                                    >
+                                        {item.label}
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300"></span>
+                                    </Link>
+                                )}
                             </motion.div>
                         ))}
                     </nav>
@@ -152,13 +166,25 @@ export default function Navbar() {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.05 }}
                                 >
-                                    <Link
-                                        href={item.href}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
-                                    >
-                                        {item.label}
-                                    </Link>
+                                    {item.external ? (
+                                        <a
+                                            href={item.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+                                        >
+                                            {item.label}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            href={item.href}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    )}
                                 </motion.div>
                             ))}
                             <motion.div

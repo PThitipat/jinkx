@@ -35,7 +35,7 @@ export function KeyCard({
   buttonColor = "yellow",
 }: KeyCardProps) {
   // ✅ ตัวแปรสำหรับจำนวนคลิก - แก้ไขได้ง่าย
-  const PHASE1_CLICKS = 12
+  const PHASE1_CLICKS = 10
   const PHASE2_CLICKS = 2
   const TOTAL_CLICKS = PHASE1_CLICKS + PHASE2_CLICKS
 
@@ -74,7 +74,7 @@ export function KeyCard({
   // เริ่ม countdown เมื่อ key ถูกสร้าง
   useEffect(() => {
     if (CreatedKey && timeLeft === null) {
-      setTimeLeft(4 * 60 * 60) // 4 ชั่วโมง = 14400 วินาที
+      setTimeLeft(KEY_EXPIRY_HOURS * 60 * 60)
     }
   }, [CreatedKey, timeLeft])
 

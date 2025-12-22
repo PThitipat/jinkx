@@ -4,6 +4,7 @@ import { Kanit } from "next/font/google"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner"
+import { LoadingOverlay } from "@/components/loading-overlay"
 
 const kanit = Kanit({ 
   subsets: ["latin", "thai"],
@@ -173,6 +174,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <LoadingOverlay />
           {children}
           <Toaster position="top-center" richColors />
 
