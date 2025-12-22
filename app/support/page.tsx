@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MessageCircle, Mail, HelpCircle, FileText } from "lucide-react"
 
+export const dynamic = 'force-dynamic'
+
 export default function SupportPage() {
     const supportOptions = [
         {

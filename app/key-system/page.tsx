@@ -7,6 +7,8 @@ import Navbar from "@/components/Nav"
 import { KeyCard } from "@/components/key-card"
 import { StreamModal } from "@/components/stream-modal"
 
+export const dynamic = 'force-dynamic'
+
 interface ErrorBoundaryState {
   hasError: boolean
   error: Error | null
@@ -26,7 +28,7 @@ class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("Error caught by boundary:", error, errorInfo)
+    // Error logged silently
   }
 
   reset = () => {

@@ -50,6 +50,8 @@ interface Exploit {
   }
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function ExecutorsPage() {
   const [versions, setVersions] = useState<RobloxVersion>({})
   const [exploits, setExploits] = useState<Exploit[]>([])

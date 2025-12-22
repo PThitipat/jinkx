@@ -13,6 +13,8 @@ import Navbar from "@/components/Nav";
 import { GameCard } from "@/components/game-card";
 import { toast } from "sonner"
 
+export const dynamic = 'force-dynamic'
+
 export default function LandingPage() {
 
     const handleCopy = () => {
