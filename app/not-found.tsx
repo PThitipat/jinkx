@@ -4,8 +4,6 @@ import Link from 'next/link'
 import { motion, Variants } from 'framer-motion'
 import { Frown } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
-
 export default function NotFound() {
   // ✅ ใส่ type ให้ชัดเจน
   const containerVariants: Variants = {

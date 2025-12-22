@@ -9,8 +9,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { toast } from "sonner"
 
-export const dynamic = 'force-dynamic'
-
 interface CryptoInfo {
   name: string
   network: string

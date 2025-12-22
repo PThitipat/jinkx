@@ -13,8 +13,6 @@ import Navbar from "@/components/Nav";
 import { GameCard } from "@/components/game-card";
 import { toast } from "sonner"
 
-export const dynamic = 'force-dynamic'
-
 export default function LandingPage() {
 
     const handleCopy = () => {
@@ -158,9 +156,7 @@ export default function LandingPage() {
                                         {[
                                             { title: "Fish It!", image: "/MapImages/FishIt.webp" },
                                             { title: "[🎉] Raise Animals", image: "/MapImages/raise_animals.png" },
-                                            { title: "Dueling Grounds ⚔️", image: "/MapImages/DuelingGrounds.webp" },
-                                            { title: "Arise Ragnarok [🔓 Release ]", image: "/MapImages/new_arise_ragnarok.webp" },
-                                            { title: "Violence District", image: "/MapImages/violence_district.webp" },
+                                            { title: "[RELEASE] Dueling Grounds", image: "/MapImages/DuelingGrounds.webp" },
                                         ].map((game, idx) => (
                                             <motion.div
                                                 key={idx}
