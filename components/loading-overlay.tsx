@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, Suspense } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Loader2 } from "lucide-react"
 
-export function LoadingOverlay() {
+function LoadingOverlayContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
@@ -120,6 +120,14 @@ export function LoadingOverlay() {
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+export function LoadingOverlay() {
+  return (
+    <Suspense fallback={null}>
+      <LoadingOverlayContent />
+    </Suspense>
   )
 }
 
