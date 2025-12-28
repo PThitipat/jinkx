@@ -99,7 +99,7 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+}
 
   * {
     @apply border-border;
@@ -113,6 +113,8 @@
     min-height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   @keyframes jx-particles {

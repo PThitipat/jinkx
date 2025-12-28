@@ -6,6 +6,10 @@ import { motion } from "framer-motion"
 import {
     Check,
     ArrowRight,
+    Shield,
+    Zap,
+    Users,
+    Heart,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -23,8 +27,7 @@ export default function LandingPage() {
                     description: "You can now paste it in your executor"
                 })
             })
-            .catch((err) => {
-                console.error("Failed to copy: ", err);
+            .catch(() => {
                 toast.error("Failed to copy script", {
                     description: "Please try again"
                 })
@@ -188,6 +191,109 @@ export default function LandingPage() {
                                         ))}
                                     </div>
                                 </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Why Choose JinkX Section */}
+                <section className="pt-4 pb-12" id="features">
+                    <div className="container mx-auto px-4 md:px-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-12"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                                Why Choose <span className="brand-jinkx">JinkX</span>?
+                            </h2>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {/* Stable & Secure */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                                className="bg-white/5 border border-white/10 rounded p-6 backdrop-blur-sm hover:border-white/20 transition-colors"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 rounded bg-white/5 border border-white/10">
+                                        <Shield className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white">
+                                        Stable & Secure
+                                    </h3>
+                                </div>
+                                <p className="text-white/70 text-sm">
+                                    Developed with stability and safety in mind for a smooth experience.
+                                </p>
+                            </motion.div>
+
+                            {/* Weekly Updates */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="bg-white/5 border border-white/10 rounded p-6 backdrop-blur-sm hover:border-white/20 transition-colors"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 rounded bg-white/5 border border-white/10">
+                                        <Zap className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white">
+                                        Weekly Updates
+                                    </h3>
+                                </div>
+                                <p className="text-white/70 text-sm">
+                                    New features and game support added every single week.
+                                </p>
+                            </motion.div>
+
+                            {/* Active Community */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                                className="bg-white/5 border border-white/10 rounded p-6 backdrop-blur-sm hover:border-white/20 transition-colors"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 rounded bg-white/5 border border-white/10">
+                                        <Users className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white">
+                                        Active Community
+                                    </h3>
+                                </div>
+                                <p className="text-white/70 text-sm">
+                                    Join our active community on Discord for help and support.
+                                </p>
+                            </motion.div>
+
+                            {/* Customer First */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.4 }}
+                                className="bg-white/5 border border-white/10 rounded p-6 backdrop-blur-sm hover:border-white/20 transition-colors"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 rounded bg-white/5 border border-white/10">
+                                        <Heart className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white">
+                                        Customer First
+                                    </h3>
+                                </div>
+                                <p className="text-white/70 text-sm">
+                                    Built with care and our users' needs as the top priority.
+                                </p>
                             </motion.div>
                         </div>
                     </div>

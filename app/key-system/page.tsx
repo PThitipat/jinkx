@@ -123,7 +123,7 @@ export default function KeySystemPage() {
                                     title="Key Systems"
                                     description="Press the button to generate your access key."
                                     features={[
-                                        "Click 12 times to unlock phase 2",
+                                        "Click 10 times to unlock phase 2",
                                         "Click 2 times more to generate the key",
                                         "Key will expire in 4 hours",
                                     ]}
@@ -137,4 +137,3 @@ export default function KeySystemPage() {
         </ErrorBoundary>
     )
 }
-

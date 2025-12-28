@@ -44,7 +44,6 @@ function checkRateLimit(ip: string): boolean {
 
 async function verifyHcaptcha(token: string): Promise<boolean> {
   if (!HCAPTCHA_SECRET) {
-    console.warn("HCAPTCHA_SECRET not set, skipping verification");
     return true; // Allow if not configured
   }
 
@@ -61,7 +60,6 @@ async function verifyHcaptcha(token: string): Promise<boolean> {
     const data = await response.json();
     return data.success === true;
   } catch (error) {
-    console.error("hCaptcha verification error:", error);
     return false;
   }
 }
@@ -80,7 +78,6 @@ export async function POST(req: NextRequest) {
       referer && allowedOrigins.some((allowed) => referer.startsWith(allowed));
 
     if (!isValidOrigin && !isValidReferer) {
-      console.log(`❌ Blocked: Invalid origin/referer | ip=${ip} | origin=${origin} | referer=${referer}`);
       return NextResponse.json(
         { error: "Forbidden: Invalid origin" },
         { status: 403 }
@@ -90,20 +87,19 @@ export async function POST(req: NextRequest) {
 
   // 2. Rate Limiting
   if (!checkRateLimit(ip)) {
-    console.log(`❌ Blocked: Rate limit exceeded | ip=${ip}`);
     return NextResponse.json(
       { error: "Too many requests. Please try again later." },
       { status: 429 }
     );
   }
 
-  // 3. Check hCaptcha Token
+  // 3. Parse body and Check hCaptcha Token
+  let body;
   try {
-    const body = await req.json();
+    body = await req.json();
     const hcaptchaToken = body.hcaptchaToken;
 
     if (!hcaptchaToken) {
-      console.log(`❌ Blocked: Missing hCaptcha token | ip=${ip}`);
       return NextResponse.json(
         { error: "hCaptcha token is required" },
         { status: 400 }
@@ -112,14 +108,12 @@ export async function POST(req: NextRequest) {
 
     const isValidCaptcha = await verifyHcaptcha(hcaptchaToken);
     if (!isValidCaptcha) {
-      console.log(`❌ Blocked: Invalid hCaptcha token | ip=${ip}`);
       return NextResponse.json(
         { error: "Invalid hCaptcha verification" },
         { status: 400 }
       );
     }
   } catch (error) {
-    console.log(`❌ Blocked: Failed to parse body | ip=${ip}`, error);
     return NextResponse.json(
       { error: "Invalid request body" },
       { status: 400 }
@@ -128,9 +122,42 @@ export async function POST(req: NextRequest) {
 
   // 4. Forward to Node.js server
   try {
+    const { auth_expire, key_days, identifier, discord_id, duration_type } = body;
+
+    // Check if NODE_SERVER_URL is configured
+    if (!NODE_SERVER_URL) {
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
+    // Prepare payload for Node.js server
+    const payload: any = {};
+    
+    if (key_days !== undefined) {
+      // If key_days is provided, use it directly (timer doesn't start until key is used)
+      payload.key_days = key_days;
+      if (duration_type) {
+        payload.duration_type = duration_type; // "days" or "hours"
+      }
+    } else if (auth_expire !== undefined) {
+      // If auth_expire is provided
+      payload.auth_expire = auth_expire;
+      
+      // If identifier or discord_id is provided, it's a claimed key (starts counting immediately)
+      if (identifier) {
+        payload.identifier = identifier;
+      }
+      if (discord_id) {
+        payload.discord_id = discord_id;
+      }
+      // If neither identifier nor discord_id is provided, server will convert offset to key_days
+    }
+
     const response = await axios.post(
-      NODE_SERVER_URL,
-      {},
+      `${NODE_SERVER_URL}/create-key`,
+      payload,
       {
         headers: {
           "Content-Type": "application/json",
@@ -142,10 +169,23 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(response.data);
   } catch (err: any) {
-    console.error("Error forwarding to Node server:", err?.response?.data ?? err.message);
+    // Handle 404 specifically
+    if (err?.response?.status === 404) {
+      return NextResponse.json(
+        { error: "Service temporarily unavailable. Please try again later." },
+        { status: 404 }
+      );
+    }
+    
+    // Handle other errors - don't expose internal details
+    const statusCode = err?.response?.status || 500;
+    const errorMessage = statusCode === 500 
+      ? "An internal error occurred. Please try again later."
+      : (err?.response?.data?.error || "An error occurred. Please try again.");
+    
     return NextResponse.json(
-      { error: err?.response?.data || "Internal Server Error" },
-      { status: err?.response?.status || 500 }
+      { error: errorMessage },
+      { status: statusCode }
     );
   }
 }

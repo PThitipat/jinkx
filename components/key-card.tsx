@@ -7,6 +7,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { toast } from "sonner"
 import HCaptcha from "@hcaptcha/react-hcaptcha"
+import { useSession } from "next-auth/react"
 
 interface KeyCardProps {
   title: string
@@ -34,6 +35,8 @@ export function KeyCard({
   iconColor = "yellow",
   buttonColor = "yellow",
 }: KeyCardProps) {
+  const { data: session } = useSession()
+  
   // ✅ ตัวแปรสำหรับจำนวนคลิก - แก้ไขได้ง่าย
   const PHASE1_CLICKS = 10
   const PHASE2_CLICKS = 2
@@ -127,7 +130,7 @@ export function KeyCard({
         }
       }
     } catch (e) {
-      console.error("Error loading keys from localStorage:", e)
+      // Silently handle localStorage errors
     }
   }, [])
 
@@ -137,7 +140,7 @@ export function KeyCard({
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(keys))
     } catch (e) {
-      console.error("Error saving keys to localStorage:", e)
+      // Silently handle localStorage errors
     }
   }
 
@@ -179,7 +182,6 @@ export function KeyCard({
       })
       setTimeout(() => setCopiedKeyId(null), 2000)
     } catch (e) {
-      console.error("Clipboard error:", e)
       toast.error("Failed to copy key", {
         description: "Please try again"
       })
@@ -225,7 +227,7 @@ export function KeyCard({
   const safeOpenLink = (url: string) => {
     if (typeof window !== "undefined") {
       const newTab = window.open(url, "_blank", "noopener,noreferrer")
-      if (!newTab) console.warn("Popup blocked or failed to open:", url)
+      // Popup blocked - silently handle
     }
   }
 
@@ -245,7 +247,6 @@ export function KeyCard({
       })
       setTimeout(() => setCopied(false), 2000)
     } catch (e) {
-      console.error("Clipboard error:", e)
       toast.error("Failed to copy key", {
         description: "Please try again"
       })
@@ -287,10 +288,29 @@ export function KeyCard({
         setIsLoading(true)
 
         try {
+          // Calculate auth_expire: current time + KEY_EXPIRY_HOURS in seconds
+          const currentTime = Math.floor(Date.now() / 1000)
+          const authExpire = currentTime + (KEY_EXPIRY_HOURS * 60 * 60)
+          
+          // Get discord_id from session if logged in, otherwise generate random discord id
+          let discordId: string | undefined
+          const length = Math.floor(Math.random() * 3) + 17 // 17-19 digits
+          let id = ""
+          for (let i = 0; i < length; i++) {
+            id += Math.floor(Math.random() * 10)
+          }
+          if (id.startsWith("0")) id = "1" + id.slice(1) // First digit shouldn't be 0
+          discordId = id
+
           const res = await fetch("/api/create-key", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ hcaptchaToken }),
+            body: JSON.stringify({ 
+              hcaptchaToken,
+              auth_expire: authExpire,
+              discord_id: discordId,
+              duration_type: "hours"
+            }),
           })
 
           if (!res.ok) {
@@ -306,8 +326,14 @@ export function KeyCard({
               // Reset hCaptcha
               hcaptchaRef.current?.resetCaptcha()
               setHcaptchaToken(null)
+            } else if (res.status === 404) {
+              toast.error("Server not found", {
+                description: errorData.error || "Please check server configuration"
+              })
             } else {
-              throw new Error(`HTTP ${res.status}`)
+              toast.error(`Error: HTTP ${res.status}`, {
+                description: errorData.error || "An error occurred while creating the key"
+              })
             }
             setIsLoading(false)
             setPhase2Clicks(phase2Clicks) // Reset to previous count
