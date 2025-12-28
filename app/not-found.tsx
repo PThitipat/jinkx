@@ -1,13 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { Home, ArrowLeft, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navbar from "@/components/Nav"
 
 export default function NotFound() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -18,7 +18,7 @@ export default function NotFound() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -30,7 +30,7 @@ export default function NotFound() {
     },
   }
 
-  const numberVariants = {
+  const numberVariants: Variants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: {
       opacity: 1,
