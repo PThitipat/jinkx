@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/auth"
 
 const NODE_SERVER_URL = process.env.NEXT_PUBLIC_LOCAL_API_URL!
 const LOCAL_API_KEY = process.env.NEXT_PUBLIC_LOCAL_API_KEY! || process.env.LOCAL_API_KEY!
